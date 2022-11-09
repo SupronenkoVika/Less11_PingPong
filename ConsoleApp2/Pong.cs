@@ -2,9 +2,18 @@
 {
     public class Pong
     {
-        public void PongMeth()
+        public EventHandler PongEvent;
+
+        public void AddPingFriend(Ping ping)
         {
-            Console.WriteLine("Pong received Ping");
+            ping.PingEvent += PingReceivedEvent;
+        }
+
+        private void PingReceivedEvent(object? sender, EventArgs e)
+        {
+            Console.WriteLine("Ping received pong");
+            Thread.Sleep(1000);
+            PongEvent.Invoke(this, EventArgs.Empty);
         }
     }
 }

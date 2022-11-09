@@ -1,23 +1,12 @@
 ﻿using ConsoleApp2;
 
 
-class Program
-{
-    delegate void Del();
-    static void Main(string[] args)
-    {
-        Ping ping = new Ping();
-        Pong pong = new Pong();
+Ping ping = new Ping();
+Pong pong = new Pong();
+ping.AddPongFriend(pong);
+pong.AddPingFriend(ping);
 
-        Del pi = ping.PingMeth;
-        Del po = pong.PongMeth;
+ping.PingEvent.Invoke(null, EventArgs.Empty);
 
-        while (true)
-        {
-            pi();
-            po();
-            Thread.Sleep(2000);
-        }
-    }
-}
+
 
